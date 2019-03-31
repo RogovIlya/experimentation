@@ -53,7 +53,12 @@ def get_point(points, alpha, deg=None):
         deg = len(points) - 1
     if deg == 0:
         return points[0]
-    return add(mul(points[deg], alpha), mul(get_point(points, alpha, deg - 1), 1 - alpha))
+    mul1 = mul(points[deg], alpha)
+    mul2 = mul(get_point(points, alpha, deg - 1), 1 - alpha)
+    print(f"mul1 = {mul1}, mul2 = {mul2}")
+    result = add(mul1, mul2)
+    print(f"result = {result}")
+    return result
 
 
 def get_points(base_points, count):
@@ -118,11 +123,11 @@ if __name__ == "__main__":
     gameDisplay = pygame.display.set_mode(SCREEN_DIM)
     pygame.display.set_caption("MyScreenSaver")
 
-    steps = 35
+    steps = 4
     working = True
     points = []
     speeds = []
-    show_help = False
+    show_help = True
     pause = True
 
     hue = 0
@@ -154,8 +159,11 @@ if __name__ == "__main__":
         gameDisplay.fill((0, 0, 0))
         hue = (hue + 1) % 360
         color.hsla = (hue, 100, 50, 100)
+        print(f"points = {points}")
         draw_points(points)
-        draw_points(get_knot(points, steps), "line", 3, color)
+        knot = get_knot(points, steps)
+        print(f"knot = {knot}")
+        draw_points(knot, "line", 3, color)
         if not pause:
             set_points(points, speeds)
         if show_help:
