@@ -175,9 +175,9 @@ class App:
         data.append(["F1", "Show Help"])
         data.append(["R", "Restart"])
         data.append(["P", "Pause/Play"])
-        data.append(["Right mouse click", "remove last point and speed"])
-        data.append(["Scroll up mouse", "it increase rate"])
-        data.append(["Scroll down mouse", "it reduce rate"])
+        data.append(["Right mouse click", "Remove last point and speed"])
+        data.append(["Scroll up mouse", "It increase rate"])
+        data.append(["Scroll down mouse", "It reduce rate"])
         data.append(["Num+", "More points"])
         data.append(["Num-", "Less points"])
         data.append(["", ""])
@@ -187,9 +187,9 @@ class App:
             (0, 0), (800, 0), (800, 600), (0, 600)], 5)
         for i, text in enumerate(data):
             self.gameDisplay.blit(font1.render(
-                text[0], True, (128, 128, 255)), (100, 100 + 30 * i))
+                text[0], True, (128, 128, 255)), (100, 100 + 35 * i))
             self.gameDisplay.blit(font2.render(
-                text[1], True, (128, 128, 255)), (200, 100 + 30 * i))
+                text[1], True, (128, 128, 255)), (400, 100 + 35 * i))
 
     def run(self):
         pygame.init()
@@ -209,7 +209,7 @@ class App:
                     if event.key == pygame.K_KP_PLUS:
                         self.steps += 1
                     if event.key == pygame.K_F1:
-                        show_help = not show_help
+                        self.show_help = not self.show_help
                     if event.key == pygame.K_KP_MINUS:
                         self.steps -= 1 if self.steps > 1 else 0
 
